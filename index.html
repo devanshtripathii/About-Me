@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Devansh Tripathi | B.Pharm · Pharma &amp; Management Aspirant</title>
+<meta name="description" content="Devansh Tripathi — Final-year B.Pharm student, MBA aspirant. Pharmaceutical analysis, quality assurance and marketing.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EEF3F0;
+    --paper-alt:#E3EBE5;
+    --card:#F7FAF8;
+    --ink:#152420;
+    --ink-soft:#48564F;
+    --teal:#0E3A3B;
+    --teal-deep:#092526;
+    --blue:#2E6F8E;
+    --amber:#BD8A2E;
+    --amber-soft:#E7C077;
+    --line:rgba(14,58,59,0.16);
+    --radius:14px;
+    --maxw:1120px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto;} *{animation:none !important; transition:none !important;} }
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', system-ui, sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.disp{ font-family:'Space Grotesk', sans-serif; letter-spacing:-0.01em; margin:0; }
+  .mono{ font-family:'IBM Plex Mono', monospace; }
+  a{ color:inherit; }
+  img{max-width:100%;display:block;}
+  .wrap{ max-width:var(--maxw); margin:0 auto; padding:0 28px; }
+  section{ padding:96px 0; position:relative; }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'IBM Plex Mono', monospace; font-size:12.5px; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--teal); margin-bottom:14px;
+  }
+  .eyebrow::before{ content:""; width:7px; height:7px; border-radius:50%; background:var(--amber); display:inline-block; }
+  h2.section-title{ font-size:clamp(28px,4vw,42px); font-weight:600; margin-bottom:6px; }
+  h2.section-title em{ font-style:normal; color:var(--blue); }
+  .section-sub{ color:var(--ink-soft); max-width:560px; margin-top:10px; font-size:15.5px; }
+
+  /* ---- Titration progress thread (signature element) ---- */
+  #thread{
+    position:fixed; top:0; left:0; width:4px; height:100%; z-index:60;
+    background:linear-gradient(to bottom, var(--teal) 0%, var(--blue) 50%, var(--amber) 100%);
+    transform-origin:top; transform:scaleY(0);
+  }
+  #thread-label{
+    position:fixed; left:12px; bottom:18px; z-index:60;
+    font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:.08em;
+    color:var(--ink-soft); background:var(--paper); padding:3px 6px 3px 0;
+    writing-mode:vertical-rl; text-transform:uppercase; opacity:.75;
+  }
+  @media (max-width:780px){
+    #thread{ top:0; left:0; width:100%; height:3px; transform-origin:left; }
+    #thread-label{ display:none; }
+  }
+
+  /* ---- Nav ---- */
+  header.nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(238,243,240,0.88); backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{ display:flex; align-items:center; justify-content:space-between; padding:16px 28px; max-width:var(--maxw); margin:0 auto; }
+  .logo{ display:flex; align-items:center; gap:10px; font-weight:600; font-size:15px; }
+  .logo .mark{
+    width:34px; height:34px; border-radius:8px; background:var(--teal); color:#fff;
+    display:flex; align-items:center; justify-content:center; font-family:'Space Grotesk'; font-weight:700; font-size:14px;
+  }
+  nav.links{ display:flex; gap:26px; font-size:14.5px; }
+  nav.links a{ text-decoration:none; color:var(--ink-soft); position:relative; padding:2px 0; }
+  nav.links a:hover{ color:var(--teal); }
+  .nav-cta{ display:flex; gap:10px; align-items:center; }
+  .btn{
+    display:inline-flex; align-items:center; gap:8px; text-decoration:none;
+    padding:10px 18px; border-radius:999px; font-size:14px; font-weight:500;
+    border:1px solid var(--teal); transition:all .18s ease;
+  }
+  .btn-solid{ background:var(--teal); color:#fff; }
+  .btn-solid:hover{ background:var(--teal-deep); }
+  .btn-outline{ background:transparent; color:var(--teal); }
+  .btn-outline:hover{ background:var(--teal); color:#fff; }
+  .menu-toggle{ display:none; background:none; border:none; cursor:pointer; padding:6px; }
+  .menu-toggle span{ display:block; width:22px; height:2px; background:var(--ink); margin:5px 0; }
+  @media (max-width:900px){
+    nav.links{ display:none; }
+    .menu-toggle{ display:block; }
+    .nav-cta .btn-outline{ display:none; }
+  }
+  nav.links.open{
+    display:flex; flex-direction:column; position:absolute; top:100%; left:0; right:0;
+    background:var(--paper); padding:20px 28px; border-bottom:1px solid var(--line); gap:16px;
+  }
+
+  /* ---- Hero ---- */
+  .hero{ padding:88px 0 70px; }
+  .hero-grid{ display:grid; grid-template-columns:1.2fr .8fr; gap:56px; align-items:center; }
+  @media (max-width:860px){ .hero-grid{ grid-template-columns:1fr; } }
+  .hero h1{ font-size:clamp(38px,6vw,64px); font-weight:700; line-height:1.04; margin:14px 0 20px; }
+  .hero h1 .accent{ color:var(--blue); }
+  .hero p.lead{ font-size:17px; color:var(--ink-soft); max-width:520px; }
+  .hero-actions{ display:flex; gap:14px; margin-top:30px; flex-wrap:wrap; }
+  .badge-row{ display:flex; flex-wrap:wrap; gap:8px; margin-top:34px; }
+  .badge{
+    font-family:'IBM Plex Mono',monospace; font-size:12px; padding:6px 12px;
+    border:1px solid var(--line); border-radius:999px; color:var(--teal); background:var(--card);
+  }
+  .flask{ position:relative; }
+  .flask-card{
+    background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
+    padding:26px; box-shadow:0 20px 40px -28px rgba(14,58,59,0.35);
+  }
+  .flask-card .drop{
+    width:12px; height:12px; border-radius:50% 50% 50% 0; background:var(--amber); transform:rotate(45deg);
+    margin-bottom:14px;
+  }
+  .stat-grid{ display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:8px; }
+  .stat{ }
+  .stat b{ font-family:'Space Grotesk'; font-size:26px; display:block; color:var(--teal); }
+  .stat span{ font-size:12.5px; color:var(--ink-soft); }
+
+  /* ---- About ---- */
+  .about-grid{ display:grid; grid-template-columns:.85fr 1.15fr; gap:48px; }
+  @media (max-width:860px){ .about-grid{ grid-template-columns:1fr; } }
+  .detail-card{ background:var(--card); border:1px solid var(--line); border-radius:var(--radius); padding:26px; }
+  .detail-row{ display:flex; justify-content:space-between; gap:10px; padding:11px 0; border-bottom:1px dashed var(--line); font-size:14px; }
+  .detail-row:last-child{ border-bottom:none; }
+  .detail-row .k{ color:var(--ink-soft); }
+  .detail-row .v{ font-weight:500; text-align:right; }
+  .quote{
+    margin-top:26px; padding:20px 22px; border-left:3px solid var(--amber);
+    background:var(--paper-alt); border-radius:0 10px 10px 0; font-style:italic; color:var(--teal-deep); font-size:15px;
+  }
+  .lang-pills{ display:flex; gap:8px; flex-wrap:wrap; margin-top:16px; }
+  .lang-pill{ font-size:12.5px; background:var(--paper-alt); padding:5px 11px; border-radius:8px; font-family:'IBM Plex Mono',monospace; }
+
+  /* ---- Skills ---- */
+  .skills-grid{ display:grid; grid-template-columns:1fr 1fr; gap:22px; margin-top:36px; }
+  @media (max-width:860px){ .skills-grid{ grid-template-columns:1fr; } }
+  .skill-card{ background:var(--card); border:1px solid var(--line); border-radius:var(--radius); padding:28px; }
+  .skill-card .head{ display:flex; align-items:center; gap:12px; margin-bottom:16px; }
+  .skill-card .icon{ width:38px; height:38px; border-radius:9px; display:flex; align-items:center; justify-content:center; font-size:18px; }
+  .skill-card.lab .icon{ background:rgba(46,111,142,0.14); }
+  .skill-card.market .icon{ background:rgba(189,138,46,0.16); }
+  .skill-card h3{ font-size:18px; font-weight:600; }
+  .skill-card .sub{ font-size:12.5px; color:var(--ink-soft); font-family:'IBM Plex Mono',monospace; }
+  .tag-list{ display:flex; flex-wrap:wrap; gap:8px; margin-top:14px; }
+  .tag{ font-size:13px; background:var(--paper-alt); padding:6px 11px; border-radius:8px; }
+  .skill-foot{ margin-top:16px; padding-top:14px; border-top:1px dashed var(--line); font-size:13px; color:var(--ink-soft); }
+  .tools-row{ margin-top:30px; display:flex; flex-wrap:wrap; gap:12px; }
+  .tool-chip{ font-size:13.5px; background:var(--card); border:1px solid var(--line); padding:8px 14px; border-radius:10px; }
+
+  /* ---- Experience ---- */
+  .timeline{ margin-top:42px; position:relative; padding-left:30px; }
+  .timeline::before{ content:""; position:absolute; left:5px; top:6px; bottom:6px; width:2px; background:var(--line); }
+  .tl-item{ position:relative; padding-bottom:44px; }
+  .tl-item:last-child{ padding-bottom:0; }
+  .tl-dot{ position:absolute; left:-30px; top:4px; width:12px; height:12px; border-radius:50%; background:var(--blue); border:3px solid var(--paper); box-shadow:0 0 0 1px var(--blue); }
+  .tl-date{ font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--ink-soft); text-transform:uppercase; letter-spacing:.06em; }
+  .tl-role{ font-size:19px; font-weight:600; margin-top:6px; font-family:'Space Grotesk'; }
+  .tl-org{ color:var(--blue); font-size:14.5px; margin-bottom:12px; }
+  .tl-item ul{ margin:0; padding-left:18px; color:var(--ink-soft); font-size:14.5px; }
+  .tl-item li{ margin-bottom:6px; }
+
+  /* ---- Education ---- */
+  .edu-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-top:36px; }
+  @media (max-width:860px){ .edu-grid{ grid-template-columns:1fr; } }
+  .edu-card{ background:var(--card); border:1px solid var(--line); border-radius:var(--radius); padding:24px; }
+  .edu-card .tag-pill{ font-family:'IBM Plex Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:.08em; color:var(--blue); }
+  .edu-card h3{ font-size:17px; margin:10px 0 4px; font-weight:600; }
+  .edu-card .org{ font-size:13.5px; color:var(--ink-soft); margin-bottom:14px; }
+  .edu-card .score{ font-family:'Space Grotesk'; font-size:28px; color:var(--teal); }
+  .edu-card .score-label{ font-size:12px; color:var(--ink-soft); }
+  .edu-card.current{ border:1px solid var(--amber); box-shadow:0 14px 30px -22px rgba(189,138,46,0.5); }
+  .current-flag{ display:inline-block; background:var(--amber); color:#fff; font-size:10.5px; padding:3px 9px; border-radius:999px; margin-bottom:10px; font-family:'IBM Plex Mono',monospace; letter-spacing:.06em; }
+
+  /* ---- Extracurricular ---- */
+  .extra-grid{ display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-top:36px; }
+  @media (max-width:860px){ .extra-grid{ grid-template-columns:1fr; } }
+  .extra-card{ background:var(--card); border:1px solid var(--line); border-radius:var(--radius); padding:24px; display:flex; gap:16px; }
+  .extra-card .emoji{ font-size:26px; }
+  .extra-card h3{ font-size:16.5px; font-weight:600; margin-bottom:6px; }
+  .extra-card p{ font-size:14px; color:var(--ink-soft); margin:0; }
+
+  /* ---- Certifications (empty state) ---- */
+  .cert-empty{
+    margin-top:36px; border:1.5px dashed var(--line); border-radius:var(--radius);
+    padding:48px 30px; text-align:center; background:var(--card);
+  }
+  .cert-empty .drop-icon{ width:22px;height:22px;background:var(--amber);border-radius:50% 50% 50% 0; transform:rotate(45deg); margin:0 auto 18px; }
+  .cert-empty h3{ font-size:18px; font-weight:600; margin-bottom:8px; }
+  .cert-empty p{ color:var(--ink-soft); font-size:14.5px; max-width:420px; margin:0 auto; }
+
+  /* ---- Contact ---- */
+  .contact-grid{ display:grid; grid-template-columns:1fr 1fr; gap:40px; margin-top:36px; }
+  @media (max-width:860px){ .contact-grid{ grid-template-columns:1fr; } }
+  .contact-card{ background:var(--card); border:1px solid var(--line); border-radius:var(--radius); padding:28px; }
+  .contact-line{ display:flex; align-items:center; gap:14px; padding:13px 0; border-bottom:1px dashed var(--line); font-size:14.5px; }
+  .contact-line:last-child{ border-bottom:none; }
+  .contact-line .ic{ width:34px; height:34px; border-radius:9px; background:var(--paper-alt); display:flex; align-items:center; justify-content:center; font-size:15px; flex-shrink:0; }
+  .contact-line a{ text-decoration:none; font-weight:500; }
+  .contact-line a:hover{ color:var(--blue); }
+  .copy-btn{ margin-left:auto; font-family:'IBM Plex Mono',monospace; font-size:11px; border:1px solid var(--line); background:transparent; padding:5px 10px; border-radius:7px; cursor:pointer; color:var(--ink-soft); }
+  .copy-btn:hover{ border-color:var(--teal); color:var(--teal); }
+
+  footer{ border-top:1px solid var(--line); padding:34px 0; }
+  .foot-inner{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; font-size:13px; color:var(--ink-soft); }
+  .foot-inner a{ text-decoration:none; }
+  .foot-inner a:hover{ color:var(--teal); }
+</style>
+</head>
+<body>
+
+<div id="thread"></div>
+<div id="thread-label">BENCH → BRAND</div>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="logo"><span class="mark">DT</span> Devansh Tripathi</div>
+    <nav class="links" id="navLinks">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="#education">Education</a>
+      <a href="#certifications">Certifications</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-outline" href="Devansh_Tripathi_Resume.pdf" target="_blank" rel="noopener">Resume</a>
+      <a class="btn btn-solid" href="#contact">Contact</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<section class="hero" id="home">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">B.Pharm · 7th Semester · Vadodara, Gujarat</div>
+      <h1>Devansh Tripathi <br> <span class="accent">Bench to Brand.</span></h1>
+      <p class="lead">Final-year B.Pharm student building a foundation in pharmaceutical analysis, quality assurance and laboratory technique — while preparing for CAT 2026 and a career in Product Management and Marketing across pharma and healthcare.</p>
+      <div class="hero-actions">
+        <a class="btn btn-solid" href="mailto:tripathidevansh57@gmail.com">Email Me</a>
+        <a class="btn btn-outline" href="Devansh_Tripathi_Resume.pdf" target="_blank" rel="noopener">Preview Resume</a>
+      </div>
+      <div class="badge-row">
+        <span class="badge">UV Spectroscopy</span>
+        <span class="badge">Titrimetric Analysis</span>
+        <span class="badge">Quality Assurance</span>
+        <span class="badge">Product Management</span>
+        <span class="badge">Marketing</span>
+        <span class="badge">CAT 2026</span>
+      </div>
+    </div>
+    <div class="flask">
+      <div class="flask-card">
+        <div class="drop"></div>
+        <div class="stat-grid">
+          <div class="stat"><b>7.6</b><span>CGPA / 10</span></div>
+          <div class="stat"><b>7th</b><span>Semester, current</span></div>
+          <div class="stat"><b>2</b><span>Internships completed</span></div>
+          <div class="stat"><b>3</b><span>Languages spoken</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap about-grid">
+    <div>
+      <div class="detail-card">
+        <div class="detail-row"><span class="k">Name</span><span class="v">Devansh Tripathi</span></div>
+        <div class="detail-row"><span class="k">Program</span><span class="v">B.Pharm, 7th Semester</span></div>
+        <div class="detail-row"><span class="k">University</span><span class="v">Sumandeep Vidyapeeth, Vadodara</span></div>
+        <div class="detail-row"><span class="k">Email</span><span class="v">tripathidevansh57@gmail.com</span></div>
+        <div class="detail-row"><span class="k">Phone</span><span class="v">+91 76003 14526</span></div>
+        <div class="detail-row"><span class="k">Targeting</span><span class="v">PMT · Marketing · MBA (CAT 2026)</span></div>
+        <div class="lang-pills">
+          <span class="lang-pill">EN — Fluent</span>
+          <span class="lang-pill">HI — Native</span>
+          <span class="lang-pill">GU</span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="eyebrow">Who I Am</div>
+      <h2 class="section-title">About <em>Me</em></h2>
+      <p style="color:var(--ink-soft); font-size:15.5px; margin-top:16px;">
+        I'm a final-year B.Pharm student with a strong foundation in pharmaceutical analysis, quality assurance and laboratory technique — UV-Visible spectroscopy, titrimetric analysis, and assay development for raw materials and finished products, all grounded in Good Laboratory Practice.
+      </p>
+      <p style="color:var(--ink-soft); font-size:15.5px; margin-top:14px;">
+        Alongside the lab work, I'm preparing for CAT 2026 as an MBA aspirant, with career interests in Product Management and Marketing within the pharmaceutical and healthcare sector. My coursework in Pharmaceutical Biotechnology, Biopharmaceutics &amp; Pharmacokinetics, Quality Assurance and Medicinal Chemistry gives me the scientific grounding; a marketing internship and campus leadership experience give me the commercial and communication side.
+      </p>
+      <div class="quote">"I want to understand the molecule well enough to explain it, and the market well enough to sell it."</div>
+    </div>
+  </div>
+</section>
+
+<section id="experience" style="background:var(--paper-alt);">
+  <div class="wrap">
+    <div class="eyebrow">My Journey</div>
+    <h2 class="section-title">Professional <em>Experience</em></h2>
+    <p class="section-sub">Two internships — one in the lab, one in the market — that shaped how I think about pharma from both sides.</p>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-date">Summer Internship</div>
+        <div class="tl-role">Summer Intern — Research &amp; Development</div>
+        <div class="tl-org">Zydus Lifesciences, Vadodara</div>
+        <ul>
+          <li>Gained hands-on exposure to pharmaceutical R&amp;D operations, including analytical testing and laboratory workflows within a regulated manufacturing environment.</li>
+          <li>Assisted with lab-based analytical procedures, supporting ongoing R&amp;D projects under the guidance of senior scientists.</li>
+          <li>Built practical understanding of API research, documentation practices, and quality standards followed in a large-scale pharmaceutical organisation.</li>
+        </ul>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot" style="background:var(--amber); box-shadow:0 0 0 1px var(--amber);"></div>
+        <div class="tl-date">Marketing Internship</div>
+        <div class="tl-role">Marketing Intern</div>
+        <div class="tl-org">IMS Learning Resources, Vadodara</div>
+        <ul>
+          <li>Contributed to student acquisition campaigns for CAT/IIM preparation programs through on-ground and digital marketing.</li>
+          <li>Generated registrations by executing campus-level outreach and social media promotions.</li>
+          <li>Gained hands-on exposure to education marketing, funnel building, and conversion-focused communication.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="eyebrow">Expertise</div>
+    <h2 class="section-title">Skills &amp; <em>Competencies</em></h2>
+    <p class="section-sub">Two lenses on the same industry — the lab bench and the go-to-market side.</p>
+    <div class="skills-grid">
+      <div class="skill-card lab">
+        <div class="head">
+          <div class="icon">🧪</div>
+          <div>
+            <h3>Pharmaceutical &amp; Laboratory</h3>
+            <div class="sub">Analysis · QA · GLP</div>
+          </div>
+        </div>
+        <div class="tag-list">
+          <span class="tag">UV-Visible Spectroscopy</span>
+          <span class="tag">Titrimetric Analysis</span>
+          <span class="tag">Acid-Base / Redox / Complexometric</span>
+          <span class="tag">Assay Development</span>
+          <span class="tag">Quality Control Testing</span>
+          <span class="tag">Good Laboratory Practice (GLP)</span>
+          <span class="tag">Organic Synthesis</span>
+        </div>
+        <div class="skill-foot">Coursework foundation: Pharmaceutical Biotechnology · Biopharmaceutics &amp; Pharmacokinetics · Quality Assurance · Medicinal Chemistry</div>
+      </div>
+      <div class="skill-card market">
+        <div class="head">
+          <div class="icon">📈</div>
+          <div>
+            <h3>Marketing &amp; Business</h3>
+            <div class="sub">Campaigns · Analysis · Communication</div>
+          </div>
+        </div>
+        <div class="tag-list">
+          <span class="tag">Digital Marketing</span>
+          <span class="tag">Campus Marketing Execution</span>
+          <span class="tag">Campaign Promotion</span>
+          <span class="tag">Conversion-Focused Communication</span>
+          <span class="tag">Structured Problem-Solving</span>
+          <span class="tag">Data Interpretation</span>
+          <span class="tag">Business Case Analysis</span>
+        </div>
+        <div class="skill-foot">Applied through a marketing internship focused on student acquisition and campus outreach.</div>
+      </div>
+    </div>
+    <div class="tools-row">
+      <span class="tool-chip">📊 MS Excel</span>
+      <span class="tool-chip">📽️ PowerPoint</span>
+      <span class="tool-chip">📝 MS Word</span>
+      <span class="tool-chip">🎨 Canva</span>
+      <span class="tool-chip">🗣️ Public Speaking</span>
+      <span class="tool-chip">🤝 Cross-functional Collaboration</span>
+    </div>
+  </div>
+</section>
+
+<section id="education" style="background:var(--paper-alt);">
+  <div class="wrap">
+    <div class="eyebrow">Academic Background</div>
+    <h2 class="section-title">My <em>Education</em></h2>
+    <div class="edu-grid">
+      <div class="edu-card current">
+        <span class="current-flag">Currently Pursuing</span>
+        <div class="tag-pill">Undergraduate · 2023–2027</div>
+        <h3>Bachelor of Pharmacy (B.Pharm)</h3>
+        <div class="org">Sumandeep Vidyapeeth Deemed to be University, Vadodara · 7th Semester</div>
+        <div class="score">7.6</div>
+        <div class="score-label">Average CGPA / 10</div>
+      </div>
+      <div class="edu-card">
+        <div class="tag-pill">Higher Secondary · 2023</div>
+        <h3>12th Standard</h3>
+        <div class="org">Science (PCB)</div>
+        <div class="score">62%</div>
+        <div class="score-label">Final Score</div>
+      </div>
+      <div class="edu-card">
+        <div class="tag-pill">Secondary · 2020</div>
+        <h3>10th Standard</h3>
+        <div class="org">&nbsp;</div>
+        <div class="score">73%</div>
+        <div class="score-label">Final Score</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="extracurricular">
+  <div class="wrap">
+    <div class="eyebrow">Beyond the Lab</div>
+    <h2 class="section-title">Extracurricular &amp; <em>Leadership</em></h2>
+    <div class="extra-grid">
+      <div class="extra-card">
+        <div class="emoji">🎪</div>
+        <div>
+          <h3>Core Committee Head — College Cultural &amp; Events Committee</h3>
+          <p>Coordinated logistics, sponsorships, and promotion for the annual college fest.</p>
+        </div>
+      </div>
+      <div class="extra-card">
+        <div class="emoji">🎤</div>
+        <div>
+          <h3>College Band Performer</h3>
+          <p>Performed as a vocalist with the college band at cultural fests and events.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="certifications" style="background:var(--paper-alt);">
+  <div class="wrap">
+    <div class="eyebrow">Credentials</div>
+    <h2 class="section-title">Certifications &amp; <em>Achievements</em></h2>
+    <p class="section-sub">This section grows as the academic journey continues.</p>
+    <div class="cert-empty">
+      <div class="drop-icon"></div>
+      <h3>No certifications added yet</h3>
+      <p>Courses, workshops, and credentials will appear here as they're completed — check back soon.</p>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="eyebrow">Get in Touch</div>
+    <h2 class="section-title">Let's <em>Connect</em></h2>
+    <p class="section-sub">Open to industrial training opportunities, internships, and conversations about pharma, product, and marketing.</p>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <div class="contact-line">
+          <div class="ic">✉️</div>
+          <a href="mailto:tripathidevansh57@gmail.com">tripathidevansh57@gmail.com</a>
+          <button class="copy-btn" data-copy="tripathidevansh57@gmail.com">Copy</button>
+        </div>
+        <div class="contact-line">
+          <div class="ic">📞</div>
+          <a href="tel:+917600314526">+91 76003 14526</a>
+          <button class="copy-btn" data-copy="+91 76003 14526">Copy</button>
+        </div>
+        <div class="contact-line">
+          <div class="ic">📍</div>
+          <span>Vadodara, Gujarat, India</span>
+        </div>
+        <div class="contact-line">
+          <div class="ic">🔗</div>
+          <span style="color:var(--ink-soft);">LinkedIn — add your profile link here</span>
+        </div>
+      </div>
+      <div class="contact-card">
+        <h3 style="font-size:16px; font-weight:600; margin-bottom:14px;">Quick facts</h3>
+        <div class="detail-row"><span class="k">Status</span><span class="v">Final-year student</span></div>
+        <div class="detail-row"><span class="k">Seeking</span><span class="v">Industrial training / internships</span></div>
+        <div class="detail-row"><span class="k">Also preparing for</span><span class="v">CAT 2026</span></div>
+        <div class="detail-row"><span class="k">Response time</span><span class="v">Within 24 hours</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-inner">
+    <span>© 2026 Devansh Tripathi · Bench to Brand</span>
+    <a href="Devansh_Tripathi_Resume.pdf" target="_blank" rel="noopener">Download Resume</a>
+  </div>
+</footer>
+
+<script>
+  // Titration progress thread
+  const thread = document.getElementById('thread');
+  function updateThread(){
+    const h = document.documentElement;
+    const scrolled = h.scrollTop || document.body.scrollTop;
+    const height = h.scrollHeight - h.clientHeight;
+    const pct = height > 0 ? scrolled / height : 0;
+    const isVertical = window.innerWidth > 780;
+    if(isVertical){ thread.style.transform = 'scaleY(' + pct + ')'; }
+    else { thread.style.transform = 'scaleX(' + pct + ')'; }
+  }
+  document.addEventListener('scroll', updateThread, {passive:true});
+  window.addEventListener('resize', updateThread);
+  updateThread();
+
+  // Mobile menu
+  const toggle = document.getElementById('menuToggle');
+  const links = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => links.classList.toggle('open'));
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+
+  // Copy buttons
+  document.querySelectorAll('.copy-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      navigator.clipboard.writeText(btn.dataset.copy).then(() => {
+        const original = btn.textContent;
+        btn.textContent = 'Copied';
+        setTimeout(() => btn.textContent = original, 1500);
+      });
+    });
+  });
+</script>
+</body>
+</html>
